@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .fp{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgb(21, 20, 20),rgb(109, 106, 106),rgb(14, 13, 13));
+            display: flex;
+            
+        }
+
+        .box{
+            width: 50%;
+            height: 50%;
+            border-radius: 35px;
+            margin: 200px auto;
+            background-color: whitesmoke;
+            position: relative;
+            
+            
+        }
+  
+        .box>section:nth-of-type(2){
+            width: 280px;
+            height: 280px;
+            border-radius: 30px;
+            border: 1px solid black;
+            position: absolute;
+            top: 12%;left: -70px;
+            overflow: hidden;
+            box-shadow: 4px 13px 30px 1px black;
+            
+        }
+        .line{
+            height: 100%;
+            transition: 1s;
+            position: relative;
+        }
+        .line>figure{
+            width: 280px;
+            height: 100%;
+           
+        }
+        .line>figure>img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 30px;
+        }
+
+        .box>div{
+            width: 60%;
+            /* background-color: aqua; */
+            min-height: 50px;
+            margin: 85px 250px;
+            transition: 1s;
+            
+            
+        }
+        .box>div>*{
+            padding: 10px;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            text-transform: capitalize;
+        }
+        .box>div>p:nth-of-type(1){
+            font-size: 17px;
+            color: rgb(125, 120, 120);
+        }
+        .box>div>h2{
+            font-size: 25px;
+        }
+        .box>div>p:nth-of-type(2){
+            font-size: 17px;
+            color: rgb(57, 51, 51);
+        }
+        .box>div>a{
+            display: block;
+            width: 150px;
+            height: 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 10px;
+            text-transform: uppercase;
+            color: white;
+            background-image: linear-gradient(147deg, #fe8a39 0%, #fd3838 74%);
+            font-size: 15px;
+        }
+        .spot{
+            width: 40%;
+            height: 50px;
+            /* background-color: aquamarine; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: -17%;top: 42%;
+            transform: rotate(90deg);
+
+        }
+ 
+        .scroller{
+            display: block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid rgb(171, 165, 165);
+            background-color: rgb(171, 165, 165);
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: .4s;
+        }
+        .schange{
+            width: 30px;
+            height: 10px;
+            border-radius: 15px;
+            background-color: rgba(0, 0, 0, 0.603);
+        }
+ 
+
+
+    </style>
+</head>
+<body>
+    <section class="fp">
+            <div class="box">
+                <section class="spot"></section>
+                <section>
+                        <div class="line">
+                            <figure>
+                                <img src="img/s1.webp" alt="">
+                            </figure>
+                            <figure>
+                                <img src="img/s2.webp" alt="">
+                            </figure>
+                            <figure>
+                                <img src="img/s3.webp" alt="">
+                            </figure>
+                    </div>
+                </section>
+                <div>
+                    <p>10 october 2022</p>
+                    <h2>lorem ipsum dolor</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta libero dolores quidem, dolorem eaque velit.</p>
+                    <a href="">read more</a>
+                </div>
+            </div>
+    </section>
+</body>
+<script>
+    let _fig =document.querySelectorAll('.line>figure')
+    let _sec = document.querySelector('.box>section:nth-of-type(2)')
+    let _height= _sec.clientHeight
+    let turn =0
+    document.getElementsByClassName('line')[0].style.width=(_height*_fig.length)+'px'
+
+    for(i=0; i<_fig.length; i++){
+      temp=  document.createElement('span')
+      temp.setAttribute('class','scroller')
+      document.getElementsByClassName('spot')[0].appendChild(temp)
+
+    }
+    // end creating spans
+    let _spn= document.querySelectorAll('.spot>span')
+    _spn.forEach(function(val,index){
+        val.addEventListener('click',function(){
+
+            for(i=0;i<_spn.length;i++){
+                _spn[i].classList.remove('schange')
+
+            }
+            turn =index
+            val.classList.add('schange')
+            document.getElementsByClassName('line')[0].style.transform='translateY(-'+(turn*_height)+'px)'
+        })
+
+    })
+
+
+</script>
+</html>
